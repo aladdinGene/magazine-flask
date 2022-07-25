@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+        <title>Magazines</title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <link href="http://fonts.googleapis.com/css?family=Tangerine" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=neon|outline|emboss|shadow-multiple">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/icons.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/app.css') }}">
+        {% block css %}{% endblock %}
+    </head>
+    <body class="main-page">
+        <header class="header_area">
+            <div class="sub_header">
+                <div class="container">
+                    <div class="row align-items-center position-relative">
+                        <div class="col-md-12 col-lg-6">
+                            <div id="logo">
+                                <a href="/">
+                                    <h2 class="font-effect-shadow-multiple">Magazines</h2>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-6 d-none d-lg-block">
+                            <div class="sub_header_social_icon float-end">
+                                <a href="{{ url_for('logout') }}" class="register_icon"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main_menu">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <nav class="navbar navbar-expand-lg navbar-light">
+                                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                                    <ul class="navbar-nav mr-auto">
+                                        <li class="nav-item">
+                                            <a class="nav-link {% if link == 'home' %} active {% endif %}" href="/">Home</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link {% if link == 'new-magazine' %} active {% endif %}" href="/new-magazine">Add Magazine</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="/account" class="nav-link {% if link == 'account' %} active {% endif %}">Account</a>
+                                        </li>
+                                        <li class="nav-item d-lg-none">
+                                            <a href="{{ url_for('logout') }}" class="nav-link">Logout</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div>
+            {% block content %}{% endblock %}
+        </div>
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p class="font-effect-shadow-multiple">Magazines</p>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="footer-links">
+                            <a href="/">Home</a>
+                            <a href="/new-magazine">Add Magazine</a>
+                            <a href="/account">Account</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <span class="float-end">&copy;&nbsp;2022.7.24 Magazines</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="{{ url_for('static', filename='assets/js/tata.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='assets/js/app.js') }}"></script>
+        {% block script %}{% endblock %}
+    </body>
+</html>
