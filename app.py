@@ -132,20 +132,23 @@ def magazineDetail(m_num):
         return redirect(url_for('login'))
     if request.method == 'GET':
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        str_num = str(m_num)
         cursor.execute(
-                'SELECT magazine_tbl.id, magazine_tbl.title, magazine_tbl.description, magazine_tbl.user_id, user_tbl.f_name, user_tbl.l_name FROM magazine_tbl LEFT JOIN user_tbl ON user_tbl.id=magazine_tbl.user_id WHERE magazine_tbl.id=%s ', str(m_num))
+                'SELECT magazine_tbl.id, magazine_tbl.title, magazine_tbl.description, magazine_tbl.user_id, user_tbl.f_name, user_tbl.l_name FROM magazine_tbl LEFT JOIN user_tbl ON user_tbl.id=magazine_tbl.user_id WHERE magazine_tbl.id=%s', [str_num])
         magazine = cursor.fetchone()
+        print(magazine)
         return render_template('detail.html', magazine=magazine)
     elif request.method == 'DELETE':
         try:
             cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            str_num = str(m_num)
             cursor.execute(
-                    'DELETE FROM magazine_tbl WHERE id=%s', str(m_num))
+                    'DELETE FROM magazine_tbl WHERE id=%s', [str_num])
             mysql.connection.commit()
             res = {'status': 200, 'msg': 'Deleted successfully!'}
             return res
         except:
-            res = {'status': 400, 'msg': 'Deleting successfully!'}
+            res = {'status': 400, 'msg': 'Deleting failed!'}
             return res
 
 @app.route('/account', methods=['GET', 'POST'])
